@@ -23,3 +23,16 @@ after_success:
   - docker push oshianor/multi-server
   - docker push oshianor/multi-worker
   - docker push oshianor/multi-nginx
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-2
+  app: multi-docker
+  env: MultiDocker-env
+  bucket_name: elasticbeanstalk-eu-west-2-277500952297
+  bucket_path: docker-multi
+  on:
+    branch: master
+  access_key_id: $awsAccessKey
+  secret_access_key:
+  secure: $awsSecretKey
